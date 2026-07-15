@@ -18,7 +18,6 @@ Create the technical and architectural foundation of the application.
 - Design the database schema
 - Set up the Spring Boot project
 - Configure development tools
-- Set up initial CI pipeline
 
 ### Expected Outcome
 A running Spring Boot application with a defined architecture, domain model and database design.
