@@ -77,12 +77,6 @@ Database
    - Integration tests
    - Continuous Integration pipeline
 
-## Future Improvements
-- Authentication and authorization
-- Advanced user roles and permissions
-- Comments and activity history
-- Dashboard with project statistics
-
 ## Status
 🚧 Currently in planning phase.
 
