@@ -29,7 +29,7 @@ Implement the main functionality required to manage software projects and develo
 ### Planned Activities
 User Management
 - Create and manage users
-- Define project roles
+- Define project roles and permissions
 
 Project Management
 - Create and manage software projects
@@ -67,17 +67,12 @@ A stable and maintainable application with automated quality processes.
 ### Goal
 Extend the application with advanced functionality.
 
-### Planned Activities
-- Implement authentication and authorization
-- Add advanced user roles and permissions
-- Add comments and activity history
-- Add dashboard and project statistics
-
-### Expected Outcome
-An extended project management system with additional collaboration features.
-
 
 ## Future Improvements
-- Notifications for project activities and task changes
-- External integrations with development tools
-- Improved user experience
+- Implement authentication and authorization
+- Add comments and activity history
+- Add notifications for project activities and task changes
+- Add external integrations with development tools
+- Add label for categorizing and filtering tasks
+- Add file attachments to tasks
+- Add a frontend with dashboards and project statistics
