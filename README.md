@@ -78,6 +78,6 @@ Database
    - Continuous Integration pipeline
 
 ## Status
-🚧 Currently in planning phase.
+🚧 Currently in development.
 
 Detailed progress is tracked using GitHub Projects.
