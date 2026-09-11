@@ -49,4 +49,26 @@ public class User {
 
   @OneToMany(mappedBy = "assignedTo")
   private Set<Task> assignedTasks;
+
+
+  protected User() { }
+
+  public User(
+          UUID id,
+          String username,
+          String email,
+          String passwordHash,
+          String firstName,
+          String lastName,
+          LocalDateTime createdAt
+  ) {
+    this.id = id;
+    this.username = username;
+    this.email = email;
+    this.passwordHash = passwordHash;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.createdAt = createdAt;
+  }
+
 }
