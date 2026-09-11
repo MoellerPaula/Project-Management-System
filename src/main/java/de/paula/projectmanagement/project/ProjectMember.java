@@ -1,7 +1,14 @@
 package de.paula.projectmanagement.project;
 
 import de.paula.projectmanagement.user.User;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.MapsId;
 
 import java.time.LocalDateTime;
 

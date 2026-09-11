@@ -2,7 +2,13 @@ package de.paula.projectmanagement.task;
 
 import de.paula.projectmanagement.project.Project;
 import de.paula.projectmanagement.user.User;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,7 +32,7 @@ public class Task {
   @JoinColumn(name = "created_by", nullable = false)
   private User createdBy;
 
-  @Column(length = 255, nullable = false)
+  @Column(nullable = false)
   private String title;
 
   private String description;

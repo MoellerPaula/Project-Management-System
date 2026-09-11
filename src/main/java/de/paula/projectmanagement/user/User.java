@@ -3,7 +3,11 @@ package de.paula.projectmanagement.user;
 import de.paula.projectmanagement.project.Project;
 import de.paula.projectmanagement.project.ProjectMember;
 import de.paula.projectmanagement.task.Task;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -22,7 +26,7 @@ public class User {
   @Column(length = 254, nullable = false, unique = true)
   private String email;
 
-  @Column(length = 255, nullable = false)
+  @Column(nullable = false)
   private String passwordHash;
 
   @Column(length = 100, nullable = false)

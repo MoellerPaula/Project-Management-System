@@ -2,7 +2,14 @@ package de.paula.projectmanagement.project;
 
 import de.paula.projectmanagement.task.Task;
 import de.paula.projectmanagement.user.User;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,7 +22,7 @@ public class Project {
   @Id
   private UUID id;
 
-  @Column(nullable = false, length = 255)
+  @Column(nullable = false)
   private String name;
 
   private String description;
