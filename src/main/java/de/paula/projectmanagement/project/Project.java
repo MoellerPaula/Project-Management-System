@@ -1,16 +1,51 @@
 package de.paula.projectmanagement.project;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import de.paula.projectmanagement.task.Task;
+import de.paula.projectmanagement.user.User;
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.UUID;
 
 @Entity
 public class Project {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private UUID id;
 
+  @Column(nullable = false, length = 255)
   private String name;
+
+  private String description;
+
+  @ManyToOne
+  @JoinColumn(name = "created_by", nullable = false)
+  private User createdBy;
+
+  @Column(nullable = false)
+  private LocalDateTime createdAt;
+
+  private LocalDateTime completedAt;
+
+  private LocalDate startDate;
+
+  private LocalDate dueDate;
+
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private ProjectStatus status;
+
+  @OneToMany(mappedBy = "project")
+  private Set<ProjectMember> members;
+
+  @OneToMany(mappedBy = "project")
+  private Set<Task> tasks;
+
+
+
+
+
+
 }

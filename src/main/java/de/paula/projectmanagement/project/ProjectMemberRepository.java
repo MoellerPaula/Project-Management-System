@@ -2,7 +2,5 @@ package de.paula.projectmanagement.project;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.UUID;
-
-public interface ProjectRepository extends JpaRepository<Project, UUID> {
+public interface ProjectMemberRepository extends JpaRepository<ProjectMember, ProjectMemberId> {
 }
