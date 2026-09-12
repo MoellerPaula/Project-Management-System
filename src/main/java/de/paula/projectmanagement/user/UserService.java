@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * Provides business logic for user management.
+ */
 @Service
 public class UserService {
 
@@ -20,6 +23,13 @@ public class UserService {
     this.passwordEncoder = passwordEncoder;
   }
 
+  /**
+   * Creates a new user from the provided request and persists it.
+   * The user's password is hashed before it is stored.
+   *
+   * @param request contains the data required to create the user
+   * @return the persisted user
+   */
   public User createUser(CreateUserRequest request) {
     UUID id = UUID.randomUUID();
 

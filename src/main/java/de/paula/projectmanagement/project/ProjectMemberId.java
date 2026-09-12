@@ -6,6 +6,11 @@ import java.io.Serializable;
 import java.util.UUID;
 import java.util.Objects;
 
+/**
+ * Represents the composite key of a project membership.
+ *
+ * <p>The key consists of the project ID and the user ID.</p>
+ */
 @Embeddable
 public class ProjectMemberId implements Serializable {
 
