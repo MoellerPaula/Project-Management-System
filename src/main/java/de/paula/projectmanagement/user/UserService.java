@@ -29,8 +29,22 @@ public class UserService {
    *
    * @param request contains the data required to create the user
    * @return the persisted user
+   * @throws IllegalArgumentException if the request is null
+   * @throws UserAlreadyExistsException if the username or email already exists
    */
   public User createUser(CreateUserRequest request) {
+    if (request == null) {
+      throw new IllegalArgumentException("request must not be null");
+    }
+
+    if (userRepository.existsByEmail(request.email())) {
+      throw new UserAlreadyExistsException(UserConflictField.EMAIL);
+    }
+
+    if (userRepository.existsByUsername(request.username()))  {
+      throw new UserAlreadyExistsException(UserConflictField.USERNAME);
+    }
+
     UUID id = UUID.randomUUID();
 
     User user = new User(

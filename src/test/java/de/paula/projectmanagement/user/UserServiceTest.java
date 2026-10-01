@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -27,6 +28,7 @@ class UserServiceTest {
 
   @InjectMocks
   private UserService userService;
+
 
   @Test
   void shouldCreateUserWhenValidRequest() {
@@ -59,6 +61,57 @@ class UserServiceTest {
     User result = userService.createUser(request);
 
     assertSame(savedUser, result);
+  }
+
+  @Test
+  void shouldThrowIllegalArgumentExceptionWhenRequestIsNull() {
+    assertThrows(
+            IllegalArgumentException.class,
+            () -> userService.createUser(null)
+    );
+  }
+
+  @Test
+  void shouldThrowUserAlreadyExistsExceptionWhenEmailAlreadyExists() {
+
+    CreateUserRequest request = new CreateUserRequest(
+            "paula",
+            "paula@example.com",
+            "password123",
+            "Paula",
+            "Möller"
+    );
+
+    when(userRepository.existsByEmail(request.email())).thenReturn(true);
+
+    UserAlreadyExistsException exception = assertThrows(
+            UserAlreadyExistsException.class,
+            () -> userService.createUser(request)
+    );
+
+    assertEquals(UserConflictField.EMAIL, exception.getConflictField());
+  }
+
+  @Test
+  void shouldThrowUserAlreadyExistsExceptionWhenUsernameAlreadyExists() {
+
+    CreateUserRequest request = new CreateUserRequest(
+            "paula",
+            "paula@example.com",
+            "password123",
+            "Paula",
+            "Möller"
+    );
+
+    when(userRepository.existsByEmail(request.email())).thenReturn(false);
+    when(userRepository.existsByUsername(request.username())).thenReturn(true);
+
+    UserAlreadyExistsException exception = assertThrows(
+            UserAlreadyExistsException.class,
+            () -> userService.createUser(request)
+    );
+
+    assertEquals(UserConflictField.USERNAME, exception.getConflictField());
   }
 
   @Test
