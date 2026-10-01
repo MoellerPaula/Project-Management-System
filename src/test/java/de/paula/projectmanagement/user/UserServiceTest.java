@@ -8,9 +8,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -59,7 +61,44 @@ class UserServiceTest {
     assertSame(savedUser, result);
   }
 
+  @Test
+  void shouldFindUserByIdWhenUserExists() {
+    UUID userId = UUID.randomUUID();
 
+    String hashedPassword = "hashedPassword123";
+
+    User user = new User(
+            userId,
+            "paula",
+            "paula@example.com",
+            hashedPassword,
+            "Paula",
+            "Möller",
+            LocalDateTime.now()
+    );
+
+    when(userRepository.findById(userId)).thenReturn(Optional.of(user));
+
+    User result = userService.findUserById(userId);
+
+    assertSame(user, result);
+  }
+
+  @Test
+  void shouldThrowUserNotFoundExceptionWhenUserDoesNotExist() {
+    UUID userId = UUID.randomUUID();
+
+    when(userRepository.findById(userId)).thenReturn(Optional.empty());
+
+    assertThrows(UserNotFoundException.class, () -> userService.findUserById(userId));
+  }
+
+  @Test
+  void shouldThrowIllegalArgumentExceptionWhenIdIsNull() {
+    UUID userId = null;
+
+    assertThrows(IllegalArgumentException.class, () -> userService.findUserById(userId));
+  }
 }
 
 
