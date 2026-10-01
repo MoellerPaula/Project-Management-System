@@ -46,5 +46,19 @@ public class UserService {
     return userRepository.save(user);
   }
 
+  /**
+   * Finds a user by its id.
+   *
+   * @param id the id of the user to find
+   * @return the found user
+   * @throws IllegalArgumentException if id is null
+   * @throws UserNotFoundException if no user with the given id exists
+   */
+  public User findUserById(UUID id) {
+    if (id == null) {
+      throw new IllegalArgumentException("id must not be null");
+    }
+      return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+    }
 
-}
+  }
