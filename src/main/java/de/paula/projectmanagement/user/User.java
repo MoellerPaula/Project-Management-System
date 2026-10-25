@@ -71,4 +71,27 @@ public class User {
     this.createdAt = createdAt;
   }
 
+  public UUID getId() {
+    return id;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public LocalDateTime getCreatedAt() {
+    return createdAt;
+  }
 }
